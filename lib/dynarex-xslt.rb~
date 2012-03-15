@@ -41,14 +41,15 @@ class DynarexXSLT
       end
 
       xml.xsl_template(match: a[0][0] + '/summary') do
-        a[0][1][1].each do |element, field|
+        summary_fields = a[0][1][1] || []
+        summary_fields.each do |element, field|
           xml.send (element.strip).to_sym do
             xml.xsl_value_of(select: field)
           end
         end
       end
 
-      xml.xsl_template(match: 'records/' + a[1][0][0]) do
+      xml.xsl_template(match: 'records/' + a[1][0]) do
         xml.send a[1][1][0].to_sym do
           a[1][1][1].each do |element, field|
             xml.send element.to_sym do
@@ -62,7 +63,7 @@ class DynarexXSLT
     
     Rexle.new(raw_a).xml(pretty: true).gsub('xsl_apply_templates',\
         'xsl:apply-templates').gsub('xsl_value_of','xsl:value-of').\
-        gsub('xsl_template','xsl:template') 
+        gsub('xsl_template','xsl:template').gsub('xsl_','xsl:) 
 
   end
   

@@ -49,7 +49,7 @@ class DynarexXSLT
         end
       end
 
-      xml.xsl_template(match: 'records/' + a[1][0][0]) do
+      xml.xsl_template(match: 'records/' + a[1][0]) do
         xml.send a[1][1][0].to_sym do
           a[1][1][1].each do |element, field|
             xml.send element.to_sym do
@@ -63,7 +63,8 @@ class DynarexXSLT
     
     Rexle.new(raw_a).xml(pretty: true).gsub('xsl_apply_templates',\
         'xsl:apply-templates').gsub('xsl_value_of','xsl:value-of').\
-        gsub('xsl_template','xsl:template') 
+        gsub('xsl_template','xsl:template').gsub('xsl_','xsl:').\
+        gsub('xmlns_xsl','xmlns:xsl')
 
   end
   
