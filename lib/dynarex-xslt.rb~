@@ -41,8 +41,7 @@ class DynarexXSLT
       end
 
       xml.xsl_template(match: a[0][0] + '/summary') do
-        summary_fields = a[0][1][1] || []
-        summary_fields.each do |element, field|
+        a[0][1][1].each do |element, field|
           xml.send (element.strip).to_sym do
             xml.xsl_value_of(select: field)
           end
