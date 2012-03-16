@@ -63,7 +63,8 @@ class DynarexXSLT
     
     Rexle.new(raw_a).xml(pretty: true).gsub('xsl_apply_templates',\
         'xsl:apply-templates').gsub('xsl_value_of','xsl:value-of').\
-        gsub('xsl_template','xsl:template').gsub('xsl_','xsl:) 
+        gsub('xsl_template','xsl:template').gsub('xsl_','xsl:').\
+        gsub('xmlns_xsl','xmlns:xsl')
 
   end
   
