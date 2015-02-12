@@ -36,7 +36,7 @@ class DynarexXSLT
       xml.xsl_template(match: a[0][0]) do
         xml.send a[0][1][0].to_sym do
           xml.xsl_apply_templates(select: 'summary')
-          xml.xsl_apply_templates(select: 'records')
+          xml.xsl_apply_templates(select: 'records/' + a[1][0])
         end 
       end
 
